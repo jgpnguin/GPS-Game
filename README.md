@@ -1,2 +1,2 @@
 # GPS-Game
-Geometric Pancake Stack
+Geostationary Pancake Stack
