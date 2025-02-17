@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Geostationary Pancake Stack.sln"
+    "dotnet.defaultSolution": "GPS-Game.sln"
 }
