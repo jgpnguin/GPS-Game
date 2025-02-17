@@ -1,7 +1,9 @@
+using TMPro;
 using UnityEngine;
 
 public class RonanTestDriver : MonoBehaviour
 {
+    public TextMeshProUGUI tmp;
     public Entity entity;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,6 +17,10 @@ public class RonanTestDriver : MonoBehaviour
         if (Input.GetKey(KeyCode.P))
         {
             entity.entityHealth.ChangeHealth(-15);
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            tmp.text = "this is a new text thing mhm yep";
         }
     }
 }

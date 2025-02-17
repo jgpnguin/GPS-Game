@@ -14,7 +14,7 @@ TagManager:
   - Entity
   - World
   - Attack
-  - 
+  - Player
   - 
   - 
   - 
@@ -40,6 +40,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: World
+    uniqueID: 3473715013
+    locked: 0
+  - name: Attacks
+    uniqueID: 1272316539
+    locked: 0
+  - name: Entity
+    uniqueID: 185502291
     locked: 0
   m_RenderingLayers:
   - Default

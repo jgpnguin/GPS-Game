@@ -1,15 +1,8 @@
-using System.Collections;
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public class EntityMovement : MonoBehaviour
 {
-    [Header("Entity")]
-    public int id { get; protected set; } = 0;
 
-    public EntityHealth entityHealth;
-
-
-    [Header("Movement Settings")]
     public bool canMove = true;
     [SerializeField] protected float moveSpeed = 15f;
     [SerializeField] protected float moveSpeedMult = 1f;
@@ -17,29 +10,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float deccel = 3f;
     [SerializeField] protected float velPower = 1f;
 
-    [Header("Components")]
     public Rigidbody2D rb;
-    public Animator animator;
-    // [Header("Status")]
-
-
-
-
-    // Start is called before the first frame update 
-    protected virtual void Start()
-    {
-    }
-
-    // Update is called once per frame
-    protected virtual void Update()
-    {
-
-    }
-
-
-    protected virtual void FixedUpdate()
-    {
-    }
 
     public void SlowDown()
     {
@@ -61,12 +32,10 @@ public class Entity : MonoBehaviour
         Vector2 movement = new Vector2(Mathf.Sign(speedDif.x) * Mathf.Pow(Mathf.Abs(speedDif.x * accelRate.x), velPower), Mathf.Sign(speedDif.y) * Mathf.Pow(Mathf.Abs(speedDif.y * accelRate.y), velPower));
         // apply force
         rb.AddForce(movement * Time.deltaTime);
-
     }
 
     public virtual void ApplyKnockback(Vector2 kb)
     {
         rb.AddForce(kb, ForceMode2D.Impulse);
     }
-
 }
