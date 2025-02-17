@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player_Test_HealthBar : MonoBehaviour
 {
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public int maxHealth = 100;
     public int currentHealth;
 
