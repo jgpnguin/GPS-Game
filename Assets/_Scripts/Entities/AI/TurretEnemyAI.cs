@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TurretEnemyAI : MonoBehaviour
@@ -15,11 +16,8 @@ public class TurretEnemyAI : MonoBehaviour
 
     public Transform viewPoint;
     public LineRendererManager lrMan;
-    [SerializeField] private Vector2 target = Vector2.zero;
     [SerializeField] private State state = State.Search;
 
-    [Header("Search")]
-    public float fireRange = 5;
 
     [Header("Prep Shoot")]
     public float timePrepShoot = 1.5f;
@@ -30,14 +28,20 @@ public class TurretEnemyAI : MonoBehaviour
     // negative for aim while firing
     public float timeShoot = 3f;
 
+    [Header("Targetting")]
+    public float targetRange = 4f;
+    public Vector2 targetAngle = new Vector2(90, -90);
+    [SerializeField] private Vector2 targetPos;
+
+
     void Update()
     {
         bool playerLOS;
         Vector2 playerLOSVec;
-        (playerLOS, playerLOSVec) = HasPlayerLOS();
+        (playerLOS, playerLOSVec) = HasPlayerLOS(targetRange);
         if (playerLOS)
         {
-            target = playerLOSVec;
+            targetPos = playerLOSVec;
         }
         switch (state)
         {
@@ -70,7 +74,7 @@ public class TurretEnemyAI : MonoBehaviour
                 }
                 else
                 {
-                    lrMan.SetPositionGlobal(WallHitAttempt(target));
+                    lrMan.SetPositionGlobal(WallHitAttempt(targetPos));
                 }
                 break;
             case State.Shooting:
@@ -119,13 +123,34 @@ public class TurretEnemyAI : MonoBehaviour
         }
     }
 
-    public (bool, Vector2) HasPlayerLOS() // remind me to add a fake player transform that follows player but is smoothed to make it seem like the camera can't completely just jump instantly
+    // public (bool, Vector2) HasPlayerLOS() // remind me to add a fake player transform that follows player but is smoothed to make it seem like the camera can't completely just jump instantly
+    // {
+    //     Vector2 dir = Player.instance.transform.position - viewPoint.position;
+    //     RaycastHit2D hit = Physics2D.Raycast(viewPoint.position, dir, fireRange, LayerMask.GetMask("Entity", "World"));
+    //     if (hit && hit.collider.gameObject == Player.instance.gameObject)
+    //     {
+    //         return (true, hit.point);
+    //     }
+    //     return (false, Vector2.zero);
+    // }
+
+    private (bool, Vector2) HasPlayerLOS(float range)
     {
         Vector2 dir = Player.instance.transform.position - viewPoint.position;
-        RaycastHit2D hit = Physics2D.Raycast(viewPoint.position, dir, fireRange, LayerMask.GetMask("Entity", "World"));
+        RaycastHit2D hit = Physics2D.Raycast(viewPoint.position, dir, range, LayerMask.GetMask("Entity", "World"));
         if (hit && hit.collider.gameObject == Player.instance.gameObject)
         {
-            return (true, hit.point);
+            float angle = Mathf.Atan2(hit.point.y - viewPoint.position.y, hit.point.x - viewPoint.position.x) * Mathf.Rad2Deg - viewPoint.eulerAngles.z;
+            if (angle < -180)
+            {
+                angle += 360;
+            }
+            else if (angle > 180)
+            {
+                angle -= 360;
+            }
+            // Debug.Log(angle);
+            return (angle <= targetAngle.x && angle >= targetAngle.y, hit.point);
         }
         return (false, Vector2.zero);
     }
@@ -136,4 +161,5 @@ public class TurretEnemyAI : MonoBehaviour
         RaycastHit2D wall = Physics2D.Raycast(viewPoint.position, dir, 99f, LayerMask.GetMask("Entity", "World"));
         return wall ? wall.point : dir.normalized * 99f;
     }
+
 }
