@@ -22,11 +22,6 @@ public class PatrolEnemyAI : MonoBehaviour
 
     public Vector2 targetPos;
 
-    [Header("Pursuit")]
-    public float pursLostSightTime = 2f;
-    public Coroutine pursLostSight;
-    public float pursRange = 10f;
-    public float pursSpeed = 5f;
 
     [Header("Patrol")]
     public Transform[] patrolPoints;
@@ -39,6 +34,14 @@ public class PatrolEnemyAI : MonoBehaviour
     public float targetRange = 6f;
     // public bool targetOnlyForward = true;
     public Vector2 targetAngle = new Vector2(90, -90);
+
+
+    [Header("Pursuit")]
+    public float pursLostSightTime = 2f;
+    public Coroutine pursLostSight;
+    public float pursRange = 10f;
+    public float pursSpeed = 5f;
+    public float pursStopDist = 3f;
 
     [Header("A* Things")]
     public List<Vector3Int> aStarPath;
@@ -57,18 +60,21 @@ public class PatrolEnemyAI : MonoBehaviour
         aStarRegenCur -= Time.deltaTime;
         if (rotateToMovment)
         {
-            if (entity.rb.linearVelocity.magnitude > 4)
+            if (entity.rb.linearVelocity.magnitude > 4 || state == State.Pursuit)
             {
                 if (upIsForward)
                 {
-                    transform.up = entity.rb.linearVelocity;
+                    // transform.up = entity.rb.linearVelocity;
+                    transform.up = (Vector3)targetPos - transform.position;
                 }
                 else
                 {
-                    transform.right = entity.rb.linearVelocity;
+                    transform.right = (Vector3)targetPos - transform.position;
+                    // transform.right = entity.rb.linearVelocity;
                 }
+
             }
-            else
+            else if (state == State.Patrol)
             {
                 // entity.rb.SetRotation(0);
                 transform.rotation = Quaternion.identity;
@@ -93,7 +99,7 @@ public class PatrolEnemyAI : MonoBehaviour
             {
                 // check if can view next patrol point, if hit obsticle do a* instead
                 Vector2 patrolPointDist = patrolPoints[patrolPointsInd].position - viewPoint.position;
-                if (Physics2D.Raycast(viewPoint.position, patrolPointDist, patrolPointDist.magnitude, LayerMask.GetMask("Entity", "World")))
+                if (Physics2D.Raycast(viewPoint.position, patrolPointDist, patrolPointDist.magnitude, LayerMask.GetMask("World")))
                 {
                     if (aStarPath.Count > 0)
                     {
@@ -117,8 +123,9 @@ public class PatrolEnemyAI : MonoBehaviour
                 }
                 else
                 {
+                    targetPos = patrolPoints[patrolPointsInd].position;
                     // check if pass through patrol point
-                    if (Vector2.Distance(patrolPoints[patrolPointsInd].position, transform.position) < .5f)
+                    if (Vector2.Distance(targetPos, transform.position) < .5f)
                     {
                         if (patrolPoints.Length > 1)
                         {
@@ -160,14 +167,14 @@ public class PatrolEnemyAI : MonoBehaviour
                         }
                         else
                         {
-                            // MoveTowards(patrolPoints[patrolPointsInd].position);
-                            entity.rb.linearVelocity = Vector2.zero;
-                            transform.position = patrolPoints[patrolPointsInd].position;
+                            entity.entityMovement.SlowDown();
+                            // MoveTowards(patrolPoints[patrolPointsInd].position); 
+                            // transform.position = patrolPoints[patrolPointsInd].position; 
                         }
                     }
                     else
                     {
-                        MoveTowards(patrolPoints[patrolPointsInd].position);
+                        MoveTowards(targetPos);
                     }
                 }
             }
@@ -182,6 +189,14 @@ public class PatrolEnemyAI : MonoBehaviour
                 {
                     StopCoroutine(pursLostSight);
                     pursLostSight = null;
+                }
+                if (pursStopDist <= Vector2.Distance(targetPos, transform.position))
+                {
+                    MoveTowards(targetPos);
+                }
+                else
+                {
+                    entity.entityMovement.SlowDown();
                 }
             }
             else
@@ -208,11 +223,11 @@ public class PatrolEnemyAI : MonoBehaviour
                         aStarPath.RemoveAt(aStarPath.Count - 1);
                     }
                 }
+                MoveTowards(targetPos);
             }
             // // entity.entityMovement.Move(targetPos - (Vector2)viewPoint.position); 
-            // aStarRegenCur -= Time.deltaTime;
+            // aStarRegenCur -= Time.deltaTime; 
 
-            MoveTowards(targetPos);
         }
     }
 
@@ -254,7 +269,7 @@ public class PatrolEnemyAI : MonoBehaviour
         return (false, Vector2.zero);
     }
 
-    private void GenerateAStar(Vector3 target, int maxCartesianDistance = 1000)
+    private void GenerateAStar(Vector3 target, int maxCartesianDistance = 400)
     {
         // PathfindingNode.instancesCreated = 0; 
         aStarPath.Clear();

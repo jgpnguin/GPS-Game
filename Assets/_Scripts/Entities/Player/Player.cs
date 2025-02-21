@@ -4,18 +4,17 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    [Header("Player Components")]
     public static Player instance;
+    public PlayerWallCheck playerWallCheck;
     InputAction moveAction;
 
     [Header("Movement")]
-    public bool can_move = true;
-    public int walls_count = 0;
     public float max_move_time = 3;
     public float move_time = 0;
 
     [Header("Components")]
     public Rigidbody2D rb;
-    public CircleCollider2D wall_detector;
 
     void Awake()
     {
@@ -39,16 +38,21 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Gets movement from user.
+
+        // I recommend only using AddForce ever in FixedUpdate 
+        // unless the force is in impulse mode for an instantaneous application  
+        // or if you are multiplying by Time.deltaTime to prevent frame rate dependant movement speed
+
+        // Gets movement from user. 
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
 
-        if (moveAction.IsPressed() && can_move == true)
+        if (moveAction.IsPressed() && playerWallCheck.can_move == true)
         {
             // Move in the direction of their movement.
             rb.AddForce(moveValue);
-            
+
             // Only increase time when not near a wall.
-            if (move_time < max_move_time && walls_count == 0)
+            if (move_time < max_move_time && playerWallCheck.walls_count == 0)
             {
                 move_time += Time.deltaTime;
             }
@@ -56,30 +60,9 @@ public class Player : MonoBehaviour
             else if (move_time >= max_move_time)
             {
                 // Debug.Log("can_move = false");
-                can_move = false;
+                playerWallCheck.can_move = false;
                 move_time = 0;
             }
-        }
-    }
-
-    // Detects and adds to counter how many walls are near.
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Allow player to move when near a wall.
-        if (collision.gameObject.layer == 7)
-        {
-            // Debug.Log("can_move = true");
-            can_move = true;
-            walls_count++;
-        }
-    }
-
-    // Detects and removes from counter how many walls are near.
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == 7)
-        {
-            walls_count--;
         }
     }
 }

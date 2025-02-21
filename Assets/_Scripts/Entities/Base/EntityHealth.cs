@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class EntityHealth : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class EntityHealth : MonoBehaviour
     [SerializeField] protected float health = 100f;
     [SerializeField] protected float maxHealth = 100f;
     [SerializeField] protected float healthChangeRate = 0f;
+    public event Action OnDie;
     public Coroutine iFrames { get; protected set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -54,8 +56,8 @@ public class EntityHealth : MonoBehaviour
         iFrames = null;
     }
 
-    protected virtual void Die()
+    public virtual void Die()
     {
-
+        OnDie?.Invoke();
     }
 }
