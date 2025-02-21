@@ -5,10 +5,12 @@ public class RonanTestDriver : MonoBehaviour
 {
     public TextMeshProUGUI tmp;
     public Entity entity;
+    public static RonanTestDriver instance;
+    public GameObject test;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        instance = this;
     }
 
     // Update is called once per frame
@@ -22,5 +24,10 @@ public class RonanTestDriver : MonoBehaviour
         {
             tmp.text = "this is a new text thing mhm yep";
         }
+    }
+
+    public void SpawnTest(Vector2 spawnLoc)
+    {
+        Instantiate(test, spawnLoc, Quaternion.identity);
     }
 }
