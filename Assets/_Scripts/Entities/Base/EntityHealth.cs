@@ -9,6 +9,7 @@ public class EntityHealth : MonoBehaviour
     [SerializeField] protected float maxHealth = 100f;
     [SerializeField] protected float healthChangeRate = 0f;
     public event Action OnDie;
+    public bool dead = false;
     public Coroutine iFrames { get; protected set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,7 +29,7 @@ public class EntityHealth : MonoBehaviour
 
     public virtual void ChangeHealth(float delta, float iFramesAddTime = 0.2f, bool ignoresIframes = false)
     {
-        if (changingHealth)
+        if (changingHealth && !dead)
         {
             if (delta > 0 || iFrames == null || ignoresIframes)
             {
@@ -58,6 +59,7 @@ public class EntityHealth : MonoBehaviour
 
     public virtual void Die()
     {
+        dead = true;
         OnDie?.Invoke();
     }
 }

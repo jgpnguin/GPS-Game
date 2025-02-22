@@ -13,7 +13,7 @@ public class Explosion : MonoBehaviour
         foreach (Collider2D hit in hits)
         {
             Entity hitEntity = hit.GetComponent<Entity>();
-            Debug.Log($"Explosion hit: {hit.name}");
+            // Debug.Log($"Explosion hit: {hit.name}"); 
             if (hitEntity != null && hitEntity.id != ownerID)
             {
                 Vector2 relPos = hitEntity.transform.position - transform.position;

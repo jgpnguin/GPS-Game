@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [Header("Movement")]
     public float max_move_time = 3;
     public float move_time = 0;
+    private Vector2 lastSafeWallPos = Vector2.zero;
 
     [Header("Components")]
     public Rigidbody2D rb;
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
+        lastSafeWallPos = transform.position;
     }
 
     // Update is called once per frame
@@ -63,6 +65,19 @@ public class Player : MonoBehaviour
                 playerWallCheck.can_move = false;
                 move_time = 0;
             }
+        }
+    }
+    public void ReloadSafe()
+    {
+        transform.position = lastSafeWallPos;
+        rb.linearVelocity = Vector2.zero;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("World"))
+        {
+            lastSafeWallPos = transform.position;
         }
     }
 }

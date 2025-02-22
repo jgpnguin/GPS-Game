@@ -7,19 +7,20 @@ public class BombBird : MonoBehaviour
     public EntityHealth entityHealth;
     public static float explodeDist = 1f;
     public static float explosionDelay = 1f;
-    public Coroutine explosionQueued = null;
+    public bool explosionNotQueued = true;
 
 
     void FixedUpdate()
     {
-        if (explodeDist >= Vector2.Distance(Player.instance.transform.position, transform.position) && explosionQueued == null)
+        if (explodeDist >= Vector2.Distance(Player.instance.transform.position, transform.position) && explosionNotQueued)
         {
-            explosionQueued = StartCoroutine(QueueExplosion());
+            StartCoroutine(QueueExplosion());
         }
     }
 
     IEnumerator QueueExplosion()
     {
+        explosionNotQueued = false;
         yield return new WaitForSeconds(explosionDelay);
         Explode();
     }
@@ -28,6 +29,5 @@ public class BombBird : MonoBehaviour
     {
         explosion.SetActive(true);
         entityHealth.Die();
-        Destroy(this);
     }
 }

@@ -22,7 +22,8 @@ public class RonanTestDriver : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Q))
         {
-            tmp.text = "this is a new text thing mhm yep";
+            // tmp.text = "this is a new text thing mhm yep";
+            Player.instance.ReloadSafe();
         }
     }
 

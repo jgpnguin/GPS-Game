@@ -101,19 +101,19 @@ public class PatrolEnemyAI : MonoBehaviour
                 Vector2 patrolPointDist = patrolPoints[patrolPointsInd].position - viewPoint.position;
                 if (Physics2D.Raycast(viewPoint.position, patrolPointDist, patrolPointDist.magnitude, LayerMask.GetMask("World")))
                 {
-                    if (aStarPath.Count > 0)
+                    if (aStarRegenCur < 0)
                     {
-                        if (Vector2.Distance(targetPos, transform.position) <= 0.5f)
+                        aStarRegenCur = aStarRegenMax;
+                        GenerateAStar(patrolPoints[patrolPointsInd].position);
+                        if (aStarPath.Count > 0)
                         {
                             targetPos = CellToWorld(aStarPath[^1]);
                             aStarPath.RemoveAt(aStarPath.Count - 1);
                         }
                     }
-                    else if (aStarRegenCur < 0)
+                    else if (aStarPath.Count > 0)
                     {
-                        aStarRegenCur = aStarRegenMax;
-                        GenerateAStar(patrolPoints[patrolPointsInd].position);
-                        if (aStarPath.Count > 0)
+                        if (Vector2.Distance(targetPos, transform.position) <= 0.5f)
                         {
                             targetPos = CellToWorld(aStarPath[^1]);
                             aStarPath.RemoveAt(aStarPath.Count - 1);
@@ -269,7 +269,7 @@ public class PatrolEnemyAI : MonoBehaviour
         return (false, Vector2.zero);
     }
 
-    private void GenerateAStar(Vector3 target, int maxCartesianDistance = 400)
+    private void GenerateAStar(Vector3 target, int maxCartesianDistance = 50)
     {
         // PathfindingNode.instancesCreated = 0; 
         aStarPath.Clear();

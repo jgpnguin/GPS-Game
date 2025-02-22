@@ -48,7 +48,10 @@ public class Entity : MonoBehaviour
         {
             hitBox.enabled = false;
         }
-        entityMovement.canMove = false;
+        if (entityMovement)
+        {
+            entityMovement.canMove = false;
+        }
         foreach (GameObject go in enableOnDie)
         {
             go.SetActive(true);
