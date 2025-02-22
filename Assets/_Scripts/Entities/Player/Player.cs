@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     [Header("Player Components")]
     public static Player instance;
+    public Entity entity;
     public PlayerWallCheck playerWallCheck;
     InputAction moveAction;
 

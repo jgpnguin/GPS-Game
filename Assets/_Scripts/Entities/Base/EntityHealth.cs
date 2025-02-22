@@ -7,8 +7,9 @@ public class EntityHealth : MonoBehaviour
     [SerializeField] protected bool changingHealth = true;
     [SerializeField] protected float health = 100f;
     [SerializeField] protected float maxHealth = 100f;
-    [SerializeField] protected float healthChangeRate = 0f;
+    // [SerializeField] protected float healthChangeRate = 0f; 
     public event Action OnDie;
+    public event Action<float> OnHealthChange;
     public bool dead = false;
     public Coroutine iFrames { get; protected set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -17,13 +18,22 @@ public class EntityHealth : MonoBehaviour
 
     }
 
+    public float GetHealth()
+    {
+        return health;
+    }
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
 
     protected virtual void Update()
     {
-        if (changingHealth)
-        {
-            ChangeHealth(healthChangeRate * Time.deltaTime, 0f);
-        }
+        // if (changingHealth)
+        // {
+        //     ChangeHealth(healthChangeRate * Time.deltaTime, 0f);
+        // } 
     }
 
 
@@ -34,6 +44,7 @@ public class EntityHealth : MonoBehaviour
             if (delta > 0 || iFrames == null || ignoresIframes)
             {
                 health += delta;
+                OnHealthChange?.Invoke(delta);
                 if (health > maxHealth)
                 {
                     health = maxHealth;
