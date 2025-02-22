@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a54d18f87e2ed34d949afe75c0331a8, type: 3}
+  m_Name: Turret
+  m_EditorClassIdentifier: 
+  fireRate: 0.25
+  damage: 10
+  bulletPrefab: {fileID: 5582694390575424632, guid: 39b6a104088720e43931827645aed080, type: 3}
+  bulletsNumber: 0
+  maxBullets: 0
+  reloadTime: 0
+  bulletData: {fileID: 11400000, guid: 2c1999d4b6119a14d9923740a87a0060, type: 2}
+  isBoundce: 0
+  force: 0

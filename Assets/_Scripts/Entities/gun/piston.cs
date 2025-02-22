@@ -3,7 +3,7 @@ using UnityEngine;
 public class piston : gun
 {
     public Rigidbody2D playerRb;
-    
+
     private Entity ownerEntity; // Reference to the entity that owns this gun
 
     void Start()
@@ -29,7 +29,7 @@ public class piston : gun
         if (bulletScript != null)
         {
             // Pass damage from GunSO and bullet data from BulletOS
-            bulletScript.Initialize(gunData.damage, gunData.bulletData.speed, gunData.bulletData.lifetime, ownerEntity.id);
+            bulletScript.Initialize(gunData.damage, gunData.bulletData.speed, gunData.bulletData.lifetime, ownerEntity.id, gunData.bulletData.kb);
         }
         else
         {

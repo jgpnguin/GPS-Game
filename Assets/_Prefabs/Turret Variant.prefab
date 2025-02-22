@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 771667512380369375}
   - component: {fileID: 6730892361818301047}
   - component: {fileID: 5881365340995026848}
+  - component: {fileID: 1211994182465441791}
   m_Layer: 0
   m_Name: LaserIsADeadlySun
   m_TagString: Untagged
@@ -172,12 +173,27 @@ MonoBehaviour:
   viewPoint: {fileID: 5972597147704534142}
   lrMan: {fileID: 6730892361818301047}
   state: 0
+  shooter: {fileID: 1211994182465441791}
   timePrepShoot: 2
   timePrepSearch: 5
   timeShoot: 1
   targetRange: 6
-  targetAngle: {x: 90, y: -90}
+  targetAngle: {x: 75, y: -75}
   targetPos: {x: 0, y: 0}
+--- !u!114 &1211994182465441791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708635372957120674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b9e462a82be6554aac1313982de1787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunData: {fileID: 11400000, guid: 11e94cdac9b34f8448c7061ff7c688be, type: 2}
+  playerRb: {fileID: 0}
 --- !u!1 &8234853047918056787
 GameObject:
   m_ObjectHideFlags: 0

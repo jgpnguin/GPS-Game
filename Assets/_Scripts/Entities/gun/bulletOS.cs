@@ -4,6 +4,7 @@ using UnityEngine;
 public class bulletOS : ScriptableObject
 {
     public float speed;
-    
+
     public float lifetime;
+    public float kb;
 }
