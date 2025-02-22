@@ -15,9 +15,9 @@ public class piston : gun
             Debug.LogError("Owner Entity not found!");
         }
     }
-    public override void Fire(Vector2 direction)
+    public override void Fire(Vector2 direction, Transform gunModel)
     {
-        GameObject bullet = Instantiate(gunData.bulletPrefab, transform.position, Quaternion.identity);
+        GameObject bullet = Instantiate(gunData.bulletPrefab, gunModel.position, Quaternion.identity);
         bullet.transform.right = direction;
         //bullet.GetComponent<attack>().ownerID = ownerID;
         if (gunData.isBoundce)

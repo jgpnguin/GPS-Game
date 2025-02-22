@@ -520,7 +520,6 @@ MonoBehaviour:
   changingHealth: 1
   health: 100
   maxHealth: 100
-  healthChangeRate: 0
   dead: 0
 --- !u!114 &680622188
 MonoBehaviour:
@@ -591,6 +590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equippedGun: {fileID: 762572498}
+  gunModel: {fileID: 118558866}
   ownerID: 0
   nextFire: 0
 --- !u!114 &762572498
@@ -851,7 +851,6 @@ MonoBehaviour:
   changingHealth: 1
   health: 100
   maxHealth: 100
-  healthChangeRate: 0
   dead: 0
 --- !u!114 &1028466234
 MonoBehaviour:

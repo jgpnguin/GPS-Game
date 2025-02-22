@@ -7,7 +7,7 @@ public class attack : MonoBehaviour
     private Camera mainCam;
     private Vector3 mousePos;
     public gun equippedGun;
-
+    public Transform gunModel;
     public int ownerID = 0;
     public float nextFire = 0.0f;
 
@@ -46,7 +46,7 @@ public class attack : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && Time.time > nextFire)
         {
             nextFire = Time.time + equippedGun.gunData.fireRate;
-            equippedGun.Fire(direction);
+            equippedGun.Fire(direction,gunModel);
         }      
 
     }
