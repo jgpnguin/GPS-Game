@@ -129,7 +129,7 @@ public class TurretEnemyAI : MonoBehaviour
     //     RaycastHit2D hit = Physics2D.Raycast(viewPoint.position, dir, fireRange, LayerMask.GetMask("Entity", "World"));
     //     if (hit && hit.collider.gameObject == Player.instance.gameObject)
     //     {
-    //         return (true, hit.point);
+    //         return (true, hit.point); 
     //     }
     //     return (false, Vector2.zero);
     // }
@@ -137,7 +137,7 @@ public class TurretEnemyAI : MonoBehaviour
     private (bool, Vector2) HasPlayerLOS(float range)
     {
         Vector2 dir = Player.instance.transform.position - viewPoint.position;
-        RaycastHit2D hit = Physics2D.Raycast(viewPoint.position, dir, range, LayerMask.GetMask("Entity", "World"));
+        RaycastHit2D hit = Physics2D.Raycast(viewPoint.position, dir, range, LayerMask.GetMask("Entity", "World", "WorldMoving"));
         if (hit && hit.collider.gameObject == Player.instance.gameObject)
         {
             float angle = Mathf.Atan2(hit.point.y - viewPoint.position.y, hit.point.x - viewPoint.position.x) * Mathf.Rad2Deg - viewPoint.eulerAngles.z;
@@ -158,7 +158,7 @@ public class TurretEnemyAI : MonoBehaviour
     public Vector3 WallHitAttempt(Vector2 target)
     {
         Vector2 dir = target - (Vector2)viewPoint.position;
-        RaycastHit2D wall = Physics2D.Raycast(viewPoint.position, dir, 99f, LayerMask.GetMask("Entity", "World"));
+        RaycastHit2D wall = Physics2D.Raycast(viewPoint.position, dir, 99f, LayerMask.GetMask("Entity", "World", "WorldMoving"));
         return wall ? wall.point : dir.normalized * 99f;
     }
 

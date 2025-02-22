@@ -23,35 +23,38 @@ public class ScreenBlackerController : MonoBehaviour
     }
 
 
-    public void SetScreenHideAndUnhide(float timeWaitHidden = 0.25f, float speedHide = 1f, float speedUnhide = 1f)
+    public void SetScreenHideAndUnhideResetChar(float timeWaitHidden = 0.25f, float timeHide = 0.5f, float timeUnhide = 0.5f)
     {
         if (processing != null)
         {
             StopCoroutine(processing);
         }
-        processing = StartCoroutine(HideAndUnhide(timeWaitHidden, speedHide, speedUnhide));
+        timeHide += .001f;
+        timeUnhide += .001f;
+        processing = StartCoroutine(HideAndUnhideResetChar(timeWaitHidden, 1 / timeHide, 1 / timeUnhide));
     }
 
-    private IEnumerator HideAndUnhide(float timeWaitHidden, float speedHide, float speedUnhide)
+    private IEnumerator HideAndUnhideResetChar(float timeWaitHidden, float speedHide, float speedUnhide)
     {
+        Time.timeScale = 0f;
         speed = speedHide;
         while (screenCoverImg.color.a < 1)
         {
             Color color = screenCoverImg.color;
-            color.a += speed * Time.deltaTime;
+            color.a += speed * Time.unscaledDeltaTime;
             screenCoverImg.color = color;
             yield return null;
         }
-        Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(timeWaitHidden);
+        Player.instance.ReloadSafe();
+        Time.timeScale = 1f;
         speed = speedUnhide;
         while (screenCoverImg.color.a > 0)
         {
             Color color = screenCoverImg.color;
-            color.a -= speed * Time.deltaTime;
+            color.a -= speed * Time.unscaledDeltaTime;
             screenCoverImg.color = color;
             yield return null;
         }
-        Time.timeScale = 1f;
     }
 }
