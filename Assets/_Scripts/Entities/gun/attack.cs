@@ -7,8 +7,8 @@ public class attack : MonoBehaviour
     private Camera mainCam;
     private Vector3 mousePos;
     public gun equippedGun;
-    
-    public float force;
+
+    public int ownerID = 0;
     public float nextFire = 0.0f;
 
     //temp

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a54d18f87e2ed34d949afe75c0331a8, type: 3}
   m_Name: piston
   m_EditorClassIdentifier: 
-  id: 0
   fireRate: 0.5
   damage: 5
   bulletPrefab: {fileID: 4436969578467592108, guid: 728d75adc03d3f044a0b875a181761ed, type: 3}
   bulletsNumber: 0
   maxBullets: 0
   reloadTime: 0
-  gunType: 0
-  speed: 99
+  bulletData: {fileID: 11400000, guid: 7a0d4f6395891634fbda25db1afce8a5, type: 2}
+  isBoundce: 1
+  force: 50

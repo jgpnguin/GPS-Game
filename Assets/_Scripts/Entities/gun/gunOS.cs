@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "gunOS", menuName = "Scriptable Objects/gunOS")]
 public class gunOS : ScriptableObject
 {
-    public int id;
+    
     public float fireRate;
     public int damage;
     public GameObject bulletPrefab;

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c262cdb47c470fd4ea837ed9efd1c56f, type: 3}
   m_Name: bulletPiston
   m_EditorClassIdentifier: 
-  speed: 0
-  lifetime: 0
+  speed: 7
+  lifetime: 7
