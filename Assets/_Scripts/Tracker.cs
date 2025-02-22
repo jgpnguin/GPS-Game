@@ -7,6 +7,9 @@ public class Tracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(host.position.x, host.position.y, transform.position.z);
+        if (host != null)
+        {
+            transform.position = new Vector3(host.position.x, host.position.y, transform.position.z);
+        }
     }
 }
