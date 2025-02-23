@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 
     [Header("Movement")]
     public float max_speed = 30f;
-    public float acceleration = 15f;
+    public float acceleration = 10f;
     public float max_air_time = 1f;
     public float air_time = 0f;
     private Vector2 lastSafeWallPos = Vector2.zero;
