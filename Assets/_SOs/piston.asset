@@ -20,4 +20,4 @@ MonoBehaviour:
   reloadTime: 0
   bulletData: {fileID: 11400000, guid: 7a0d4f6395891634fbda25db1afce8a5, type: 2}
   isBoundce: 1
-  force: 50
+  force: 25
