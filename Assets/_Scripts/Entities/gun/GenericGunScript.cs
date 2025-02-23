@@ -4,12 +4,14 @@ using UnityEngine;
 public class GenericGunScript : gun
 {
     public Rigidbody2D playerRb;
+    public AudioSource laserSound = null;
 
     private Entity ownerEntity; // Reference to the entity that owns this gun
     private Coroutine shotCooldown = null;
 
     void Start()
     {
+        laserSound = GetComponent<AudioSource>();
         // Get the owner's Entity component
         ownerEntity = GetComponentInParent<Entity>();
         if (ownerEntity == null)
@@ -22,6 +24,11 @@ public class GenericGunScript : gun
         if (shotCooldown == null)
         {
             GameObject bullet = Instantiate(gunData.bulletPrefab, gunModel.position, Quaternion.identity);
+            if (laserSound != null)
+            {
+                laserSound.Play();
+            }
+            
             bullet.transform.right = direction;
             //bullet.GetComponent<attack>().ownerID = ownerID;
             if (gunData.isBoundce && playerRb != null)

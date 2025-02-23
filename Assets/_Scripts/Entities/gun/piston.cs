@@ -3,6 +3,7 @@ using UnityEngine;
 public class piston : gun
 {
     public Rigidbody2D playerRb;
+    public AudioSource laserSound = null;
 
     private Entity ownerEntity; // Reference to the entity that owns this gun
 
@@ -17,6 +18,11 @@ public class piston : gun
     }
     public override void Fire(Vector2 direction, Transform gunModel)
     {
+        if (laserSound != null)
+        {
+            laserSound.Play();
+        }
+        
         GameObject bullet = Instantiate(gunData.bulletPrefab, gunModel.position, Quaternion.identity);
         bullet.transform.right = direction;
         //bullet.GetComponent<attack>().ownerID = ownerID;

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
+    public AudioSource explosionSound = null;
+
     public float effectRadius = 1f;
     public float explosionStrength = 5f;
     public float explosionDmg = 5f;
@@ -10,6 +12,10 @@ public class Explosion : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created 
     void OnEnable()
     {
+        if (explosionSound != null)
+        {
+            explosionSound.Play();
+        }
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, effectRadius, LayerMask.GetMask("Entity"));
         foreach (Collider2D hit in hits)
         {
