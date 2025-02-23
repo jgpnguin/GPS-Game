@@ -483,10 +483,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.28176042
-    y: 0.16550764
-    width: 0.43557167
-    height: 0.6675939
+    x: 0
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -688,6 +688,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3741377568186614745, guid: e2b88051d9da5334c9abe519c3b8ecc4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168413640839615382, guid: e2b88051d9da5334c9abe519c3b8ecc4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4225258167309705033, guid: e2b88051d9da5334c9abe519c3b8ecc4, type: 3}
       propertyPath: m_Name
       value: Player Variant
@@ -701,6 +709,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6575820027871857750, guid: e2b88051d9da5334c9abe519c3b8ecc4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8176341824848102235, guid: e2b88051d9da5334c9abe519c3b8ecc4, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -742,6 +754,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8790610383344176433, guid: e2b88051d9da5334c9abe519c3b8ecc4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8813003494309350495, guid: e2b88051d9da5334c9abe519c3b8ecc4, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
