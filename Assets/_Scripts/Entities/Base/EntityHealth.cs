@@ -11,6 +11,9 @@ public class EntityHealth : MonoBehaviour
     public event Action OnDie;
     public event Action<float> OnHealthChange;
     public bool dead = false;
+
+    public AudioSource hitSound = null;
+    public AudioSource deathSound = null;
     public Coroutine iFrames { get; protected set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,6 +47,11 @@ public class EntityHealth : MonoBehaviour
             if (delta > 0 || iFrames == null || ignoresIframes)
             {
                 health += delta;
+                if (hitSound != null)
+                {
+                    hitSound.Play();
+                }
+
                 OnHealthChange?.Invoke(delta);
                 if (health > maxHealth)
                 {
@@ -70,6 +78,11 @@ public class EntityHealth : MonoBehaviour
 
     public virtual void Die()
     {
+        if (deathSound != null)
+        {
+            deathSound.Play();
+        }
+
         dead = true;
         OnDie?.Invoke();
     }

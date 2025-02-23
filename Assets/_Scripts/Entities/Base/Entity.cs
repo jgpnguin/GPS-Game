@@ -13,6 +13,7 @@ public class Entity : MonoBehaviour
     public Rigidbody2D rb;
     public Collider2D hitBox;
     public Animator animator;
+
     // [Header("Status")]
     [Header("Die")]
     public GameObject dieDestroyObj;

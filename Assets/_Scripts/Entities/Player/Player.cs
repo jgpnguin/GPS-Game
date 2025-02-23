@@ -59,8 +59,6 @@ public class Player : MonoBehaviour
         {
             air_time += Time.deltaTime;
 
-            Debug.Log(moveValue);
-
             // Stops the player from moving if they ran out of air time.
             if (air_time >= max_air_time)
             {
