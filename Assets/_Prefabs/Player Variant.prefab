@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walls_count: 0
-  can_move: 0
+  can_move: 1
   wall_detector: {fileID: 5923506211219844915}
 --- !u!1001 &617531465665395000
 PrefabInstance:
@@ -201,8 +201,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 6575820027871857750}
   playerWallCheck: {fileID: 9168007667994974164}
-  max_move_time: 3
-  move_time: 0
+  max_speed: 6
+  acceleration: 3
+  max_air_time: 3
+  air_time: 0
+  movementDampening: 0
+  floatingDampening: 1
   rb: {fileID: 8466606689692115931}
 --- !u!95 &3922738233053243031
 Animator:
