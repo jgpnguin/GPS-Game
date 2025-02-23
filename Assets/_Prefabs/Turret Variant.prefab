@@ -258,6 +258,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6040427578377844078, guid: 72701113cfbcdc44a981dbb6870f3ef1, type: 3}
+      propertyPath: hitBox
+      value: 
+      objectReference: {fileID: 3018893117546232546}
+    - target: {fileID: 6040427578377844078, guid: 72701113cfbcdc44a981dbb6870f3ef1, type: 3}
+      propertyPath: dieDestroyObj
+      value: 
+      objectReference: {fileID: 87400048833963955}
+    - target: {fileID: 6040427578377844078, guid: 72701113cfbcdc44a981dbb6870f3ef1, type: 3}
       propertyPath: disableHitboxWhileDying
       value: 1
       objectReference: {fileID: 0}
@@ -372,6 +380,11 @@ MonoBehaviour:
   animator: {fileID: 6385585630891942805}
   turretEnemyAI: {fileID: 5881365340995026848}
   turretHealth: {fileID: 7875895344949884800}
+--- !u!61 &3018893117546232546 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1936841238051552032, guid: 72701113cfbcdc44a981dbb6870f3ef1, type: 3}
+  m_PrefabInstance: {fileID: 3676144094542102978}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4785960375468078539 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8173870634788172809, guid: 72701113cfbcdc44a981dbb6870f3ef1, type: 3}

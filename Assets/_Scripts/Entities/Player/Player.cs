@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [Header("Player Components")]
     public static Player instance;
     public Entity entity;
+    public EntityHealth entityHealth;
     public PlayerWallCheck playerWallCheck;
     InputAction moveAction;
 
@@ -46,6 +47,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // No movement if dead.
+        if (entityHealth.dead == true)
+        {
+            return;
+        }
         // Gets movement from user.
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
 

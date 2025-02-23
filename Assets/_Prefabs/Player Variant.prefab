@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134d5943246982d4e8b0ae5b03d5e3f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityHealth: {fileID: 6258153130964963194}
   equippedGun: {fileID: 4168413640839615382}
   gunModel: {fileID: 8989033045866133007}
   ownerID: 0
@@ -355,6 +356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 6575820027871857750}
+  entityHealth: {fileID: 6258153130964963194}
   playerWallCheck: {fileID: 9168007667994974164}
   max_speed: 6
   acceleration: 3
@@ -422,6 +424,17 @@ CapsuleCollider2D:
   m_Offset: {x: -0.03, y: 0}
   m_Size: {x: 0.59, y: 1}
   m_Direction: 0
+--- !u!114 &6258153130964963194 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6793825745487984194, guid: 72701113cfbcdc44a981dbb6870f3ef1, type: 3}
+  m_PrefabInstance: {fileID: 617531465665395000}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4225258167309705033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e856e5021c4c9db48b5abcc8a1c11416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6575820027871857750 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6040427578377844078, guid: 72701113cfbcdc44a981dbb6870f3ef1, type: 3}

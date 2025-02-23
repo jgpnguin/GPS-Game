@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: piston
   m_EditorClassIdentifier: 
   fireRate: 0.5
-  damage: 0
+  damage: 50
   bulletPrefab: {fileID: 4436969578467592108, guid: 728d75adc03d3f044a0b875a181761ed, type: 3}
   bulletsNumber: 0
   maxBullets: 0
