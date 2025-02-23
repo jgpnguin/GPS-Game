@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 070ed9bd58ff4164398ce5445920b618
+guid: 12f3526d71f8b634bbdf45ff7d7e0f70
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,9 +123,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: GameOver
+  - name: IntroScene
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.032258064}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -134,8 +134,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 640
-      height: 480
-    spriteID: 83133007adaad764db8c8846186d907c
+      height: 496
+    spriteID: 1b3aa906c988aef44a4edfcb034cf35c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,21 +147,21 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1884423134
-    name: GameOver
+    guid: 1717760076
+    name: IntroScene
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: GameOver
+    - name: IntroScene
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
-        y: 0
+        y: -16
         width: 640
-        height: 480
-      spriteId: 83133007adaad764db8c8846186d907c
+        height: 496
+      spriteId: 1b3aa906c988aef44a4edfcb034cf35c
     linkedCells: []
     parentIndex: -1
   platformSettings:

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class attack : MonoBehaviour
 {
+    public EntityHealth entityHealth;
+
     // cameraview initialization
     private Camera mainCam;
     private Vector3 mousePos;
@@ -11,7 +13,7 @@ public class attack : MonoBehaviour
     public int ownerID = 0;
     public float nextFire = 0.0f;
     public Transform characterModel;
-    private bool isFlipped = false;
+    //private bool isFlipped = false;
 
     //temp
     //public GameObject bulletPrefab;
@@ -32,12 +34,17 @@ public class attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // No gun if dead.
+        if (entityHealth.dead == true)
+        {
+            return;
+        }
 
         // Get the mouse position in world space
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f; // Ensure it's in 2D space
         //aim by cursor logic
-        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        // mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
 
         // Calculate the aim direction
@@ -64,18 +71,6 @@ public class attack : MonoBehaviour
             nextFire = Time.time + equippedGun.gunData.fireRate;
             equippedGun.Fire(aimDirection, gunModel);
 
-            transform.rotation = Quaternion.Euler(0, 0, rotZ);
-
-            //get the direction by the mouse cursor
-            Vector2 direction = (mousePos - transform.position).normalized;
-
-            //check weather to shoot or not
-            if (Input.GetMouseButtonDown(0) && Time.time > nextFire)
-            {
-                nextFire = Time.time + equippedGun.gunData.fireRate;
-                equippedGun.Fire(direction, gunModel);
-
-            }
 
         }
 
