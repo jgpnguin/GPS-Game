@@ -21,7 +21,7 @@ public class attack : MonoBehaviour
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        
+
         if (equippedGun == null)
         {
             Debug.LogError("No gun component found on this GameObject!");
@@ -32,9 +32,13 @@ public class attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // Get the mouse position in world space
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f; // Ensure it's in 2D space
+        //aim by cursor logic
+        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+
 
         // Calculate the aim direction
         Vector3 aimDirection = (mousePos - transform.position).normalized;
@@ -53,11 +57,24 @@ public class attack : MonoBehaviour
         // Rotate gun to follow the cursor
         gunModel.rotation = Quaternion.Euler(0, 0, rotZ);
 
+
         // Shooting logic
         if (Input.GetMouseButton(0) && Time.time > nextFire)
         {
             nextFire = Time.time + equippedGun.gunData.fireRate;
             equippedGun.Fire(aimDirection, gunModel);
+
+        transform.rotation = Quaternion.Euler(0, 0, rotZ);
+
+        //get the direction by the mouse cursor
+        Vector2 direction = (mousePos - transform.position).normalized;
+
+        //check weather to shoot or not
+        if (Input.GetMouseButtonDown(0) && Time.time > nextFire)
+        {
+            nextFire = Time.time + equippedGun.gunData.fireRate;
+            equippedGun.Fire(direction, gunModel);
+
         }
 
     }

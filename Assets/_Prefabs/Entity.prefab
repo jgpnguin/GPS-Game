@@ -316,8 +316,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 185502291
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e49ec9403b40d5a498a79607ee13b202, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -342,10 +342,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2618c669bf4d3bd4ca668e6dcaf37e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   entityHealth: {fileID: 6793825745487984194}
   entityMovement: {fileID: 0}
   rb: {fileID: 9074335939401603811}
+  hitBox: {fileID: 0}
   animator: {fileID: 0}
+  dieDestroyObj: {fileID: 0}
+  dieDestroyTime: 3
+  disableHitboxWhileDying: 1
+  enableOnDie: []
+  disableOnDie: []
 --- !u!114 &6793825745487984194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +368,7 @@ MonoBehaviour:
   changingHealth: 1
   health: 100
   maxHealth: 100
-  healthChangeRate: 0
+  dead: 0
 --- !u!50 &9074335939401603811
 Rigidbody2D:
   serializedVersion: 5
