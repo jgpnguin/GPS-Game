@@ -64,18 +64,6 @@ public class attack : MonoBehaviour
             nextFire = Time.time + equippedGun.gunData.fireRate;
             equippedGun.Fire(aimDirection, gunModel);
 
-            transform.rotation = Quaternion.Euler(0, 0, rotZ);
-
-            //get the direction by the mouse cursor
-            Vector2 direction = (mousePos - transform.position).normalized;
-
-            //check weather to shoot or not
-            if (Input.GetMouseButtonDown(0) && Time.time > nextFire)
-            {
-                nextFire = Time.time + equippedGun.gunData.fireRate;
-                equippedGun.Fire(direction, gunModel);
-
-            }
 
         }
 
