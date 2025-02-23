@@ -12,7 +12,7 @@ public class BombBird : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (explodeDist >= Vector2.Distance(Player.instance.transform.position, transform.position) && explosionNotQueued)
+        if (explodeDist >= Vector2.Distance(Player.instance.transform.position, transform.position) && explosionNotQueued && !entityHealth.dead)
         {
             StartCoroutine(QueueExplosion());
         }
@@ -27,7 +27,10 @@ public class BombBird : MonoBehaviour
 
     private void Explode()
     {
-        explosion.SetActive(true);
-        entityHealth.Die();
+        if (!entityHealth.dead)
+        {
+            explosion.SetActive(true);
+            entityHealth.Die();
+        }
     }
 }

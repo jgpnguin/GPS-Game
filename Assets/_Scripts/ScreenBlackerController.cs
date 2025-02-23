@@ -23,7 +23,7 @@ public class ScreenBlackerController : MonoBehaviour
     }
 
 
-    public void SetScreenHideAndUnhideResetChar(float timeWaitHidden = 0.25f, float timeHide = 0.5f, float timeUnhide = 0.5f)
+    public void SetScreenHideAndUnhideResetChar(float timeWaitHidden = 0.125f, float timeHide = 0.125f, float timeUnhide = 0.125f)
     {
         if (processing != null)
         {

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Spike : MonoBehaviour
 {
-    public const float damage = 7.5f;
+    public const float damage = 30f;
     void OnTriggerEnter2D(Collider2D collision)
     {
         Entity hitBoi = collision.GetComponent<Entity>();
