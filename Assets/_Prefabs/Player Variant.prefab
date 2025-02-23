@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 8989033045866133007}
   - component: {fileID: 1588971575469329160}
   m_Layer: 0
-  m_Name: fakeGun
+  m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,8 +175,8 @@ Transform:
   m_GameObject: {fileID: 5783875856781155240}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.213, y: -0.085, z: 0}
-  m_LocalScale: {x: 0.27467805, y: 0.09231552, z: 1}
+  m_LocalPosition: {x: 0.245, y: -0.099, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4268018498419354264}

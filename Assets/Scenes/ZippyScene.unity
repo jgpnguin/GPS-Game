@@ -416,8 +416,8 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 0.208901
+    y: 0.025691701
     width: 0.58128977
     height: 0.9486166
   near clip plane: 0.3
@@ -975,7 +975,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8989033045866133007, guid: e2b88051d9da5334c9abe519c3b8ecc4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.27
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
