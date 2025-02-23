@@ -14,7 +14,7 @@ public class MovePlayerAfterMissionStartDialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((text.text == Dialogue.lines[lastIndex]) && (player.transform.position.x <= 10f)) 
+        if ((text.text == Dialogue.lines[lastIndex]) && (player.transform.position.x <= 10f))
         {
             player.transform.position += Vector3.right * moveSpeed * Time.deltaTime;
         }
