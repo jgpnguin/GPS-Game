@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
@@ -11,9 +12,13 @@ public class Player : MonoBehaviour
     InputAction moveAction;
 
     [Header("Movement")]
-    public float max_move_time = 3;
-    public float move_time = 0;
+    public float max_speed = 30f;
+    public float acceleration = 15f;
+    public float max_air_time = 1f;
+    public float air_time = 0f;
     private Vector2 lastSafeWallPos = Vector2.zero;
+    public float movementDampening = 0f;
+    public float floatingDampening = 1f;
 
     [Header("Components")]
     public Rigidbody2D rb;
@@ -39,34 +44,48 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
-        // I recommend only using AddForce ever in FixedUpdate 
-        // unless the force is in impulse mode for an instantaneous application  
-        // or if you are multiplying by Time.deltaTime to prevent frame rate dependant movement speed
-
-        // Gets movement from user. 
+        // Gets movement from user.
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
 
-        if (moveAction.IsPressed() && playerWallCheck.can_move == true)
+        if (playerWallCheck.can_move == true)
         {
-            // Move in the direction of their movement.
-            rb.AddForce(moveValue);
+            air_time += Time.deltaTime;
 
-            // Only increase time when not near a wall.
-            if (move_time < max_move_time && playerWallCheck.walls_count == 0)
+            Debug.Log(moveValue);
+
+            // Stops the player from moving if they ran out of air time.
+            if (air_time >= max_air_time)
             {
-                move_time += Time.deltaTime;
-            }
-            // Stop player from moving when away from a wall for x amount of time.
-            else if (move_time >= max_move_time)
-            {
-                // Debug.Log("can_move = false");
                 playerWallCheck.can_move = false;
-                move_time = 0;
+                rb.linearDamping = movementDampening;
+            }
+            else if (moveAction.IsPressed())
+            {
+                // Prevent player from moving faster than max_speed.
+                Vector2 velocity = rb.linearVelocity;
+                float magnitude = velocity.magnitude;
+                
+                if (magnitude <= max_speed)
+                {
+                    rb.linearDamping = movementDampening;
+                    rb.AddForce(moveValue * acceleration);
+                }
+            }
+            else
+            {
+                rb.linearDamping = floatingDampening;
             }
         }
+
+        // Reset air time when near a wall.
+        if (playerWallCheck.walls_count > 0)
+        {
+            air_time = 0;
+            playerWallCheck.can_move = true;
+        }
+        
     }
     public void ReloadSafe()
     {

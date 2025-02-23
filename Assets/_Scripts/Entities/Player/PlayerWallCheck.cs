@@ -24,7 +24,6 @@ public class PlayerWallCheck : MonoBehaviour
     // Detects and removes from counter how many walls are near.
     private void OnTriggerExit2D(Collider2D collision)
     {
-
         if (((1 << collision.gameObject.layer) & LayerMask.GetMask("World", "WorldMoving")) != 0)
         {
             walls_count--;
