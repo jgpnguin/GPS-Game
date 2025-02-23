@@ -7,11 +7,28 @@ public class Timer : MonoBehaviour
     public TextMeshProUGUI timer;
     public string scene = "GameOver";
 
-    public int timeRem = 0;
+    public int timeRem = 600;
+    public int timeRemFlicker = 60;
+    public Color flicker1 = Color.red;
+    public float flicker1Time = 0.25f;
+    public Color flicker2 = Color.clear;
+    public float flicker2Time = 0.25f;
+    public Coroutine flickering;
 
     void Start()
     {
         StartCoroutine(TickClock());
+    }
+
+    public IEnumerator Flicker()
+    {
+        while (true)
+        {
+            timer.color = flicker1;
+            yield return new WaitForSeconds(flicker1Time);
+            timer.color = flicker2;
+            yield return new WaitForSeconds(flicker2Time);
+        }
     }
 
     public IEnumerator TickClock()
@@ -21,6 +38,10 @@ public class Timer : MonoBehaviour
             timer.text = TimeFormatted(timeRem);
             yield return new WaitForSeconds(1);
             timeRem--;
+            if (flickering == null && timeRem <= timeRemFlicker)
+            {
+                flickering = StartCoroutine(Flicker());
+            }
         }
         SceneSwitcher.SwitchScene(scene);
     }

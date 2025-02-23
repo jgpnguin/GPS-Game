@@ -9,7 +9,7 @@ public class Spike : MonoBehaviour
         if (hitBoi != null)
         {
             hitBoi.entityHealth.ChangeHealth(-damage, 1f, true);
-            if (hitBoi.gameObject == Player.instance.gameObject)
+            if (hitBoi.gameObject == Player.instance.gameObject && !hitBoi.entityHealth.dead)
             {
                 ScreenBlackerController.instance.SetScreenHideAndUnhideResetChar();
             }

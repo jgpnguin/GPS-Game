@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c262cdb47c470fd4ea837ed9efd1c56f, type: 3}
   m_Name: TurretBullet
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   lifetime: 10
-  kb: 5
+  kb: 3

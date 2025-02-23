@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1272316539
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectRadius: 1
   explosionStrength: 20
+  explosionDmg: 20
   ownerID: 0
 --- !u!1001 &3983716480539849679
 PrefabInstance:
@@ -147,10 +148,14 @@ PrefabInstance:
       propertyPath: disableHitboxWhileDying
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4690907262403007844, guid: 9ff3a2cbd92e81b42b0daafe53fc3395, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.125
+      objectReference: {fileID: 0}
     - target: {fileID: 5826126909393261417, guid: 9ff3a2cbd92e81b42b0daafe53fc3395, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -2102383555, guid: 912d6ae470703b645bfaf06b91958d5e, type: 3}
+      objectReference: {fileID: -1340836357, guid: 912d6ae470703b645bfaf06b91958d5e, type: 3}
     - target: {fileID: 5826126909393261417, guid: 9ff3a2cbd92e81b42b0daafe53fc3395, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -222,6 +227,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5527846998153145854, guid: 9ff3a2cbd92e81b42b0daafe53fc3395, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4985979148874692996}
+    - targetCorrespondingSourceObject: {fileID: 5527846998153145854, guid: 9ff3a2cbd92e81b42b0daafe53fc3395, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8094860203910021903}
+    - targetCorrespondingSourceObject: {fileID: 5527846998153145854, guid: 9ff3a2cbd92e81b42b0daafe53fc3395, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6509377877551377736}
   m_SourcePrefab: {fileID: 100100000, guid: 9ff3a2cbd92e81b42b0daafe53fc3395, type: 3}
 --- !u!114 &1694926250980183554 stripped
 MonoBehaviour:
@@ -244,6 +255,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 808471002262085869, guid: 9ff3a2cbd92e81b42b0daafe53fc3395, type: 3}
   m_PrefabInstance: {fileID: 3983716480539849679}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5496909756238129657 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8863633018959534646, guid: 9ff3a2cbd92e81b42b0daafe53fc3395, type: 3}
+  m_PrefabInstance: {fileID: 3983716480539849679}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935100458374192689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340827837aaead643a7cb6ea0d408c85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!58 &8525439737264514731 stripped
 CircleCollider2D:
   m_CorrespondingSourceObject: {fileID: 4690907262403007844, guid: 9ff3a2cbd92e81b42b0daafe53fc3395, type: 3}
@@ -269,3 +291,40 @@ MonoBehaviour:
   explosion: {fileID: 1977877249200022112}
   entityHealth: {fileID: 1694926250980183554}
   explosionNotQueued: 1
+--- !u!114 &8094860203910021903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935100458374192689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11953a47869bd4343979a924f4aa9170, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 6509377877551377736}
+  patrolEnemyAI: {fileID: 5496909756238129657}
+  turretHealth: {fileID: 1694926250980183554}
+--- !u!95 &6509377877551377736
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935100458374192689}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3ff6ee980052f2148ad6729a403ebc5d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

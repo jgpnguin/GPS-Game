@@ -16,6 +16,7 @@ public class PatrolEnemyAI : MonoBehaviour
 
     public Entity entity;
     public bool rotateToMovment = false;
+    public const float SPEED_TO_ROT = 4f;
     public bool upIsForward = false;
     public State state = State.Patrol;
     public Transform viewPoint;
@@ -60,7 +61,7 @@ public class PatrolEnemyAI : MonoBehaviour
         aStarRegenCur -= Time.deltaTime;
         if (rotateToMovment)
         {
-            if (entity.rb.linearVelocity.magnitude > 4 || state == State.Pursuit)
+            if (entity.rb.linearVelocity.magnitude > SPEED_TO_ROT || state == State.Pursuit)
             {
                 if (upIsForward)
                 {

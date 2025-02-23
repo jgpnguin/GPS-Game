@@ -49,7 +49,7 @@ public class EntityHealth : MonoBehaviour
                 {
                     health = maxHealth;
                 }
-                else if (health < 0)
+                else if (health <= 0)
                 {
                     Die();
                 }

@@ -19,6 +19,7 @@ public class Entity : MonoBehaviour
     public float dieDestroyTime = 3f;
     public bool disableHitboxWhileDying = true;
     public GameObject[] enableOnDie;
+    public GameObject[] disableOnDie;
 
 
 
@@ -56,12 +57,20 @@ public class Entity : MonoBehaviour
         {
             go.SetActive(true);
         }
+        foreach (GameObject go in disableOnDie)
+        {
+            go.SetActive(false);
+        }
         StartCoroutine(DieDestroyTimer());
     }
 
     private IEnumerator DieDestroyTimer()
     {
         yield return new WaitForSeconds(dieDestroyTime);
+        if (this == Player.instance.entity)
+        {
+            SceneSwitcher.SwitchScene("GameOver");
+        }
         Destroy(dieDestroyObj);
     }
 

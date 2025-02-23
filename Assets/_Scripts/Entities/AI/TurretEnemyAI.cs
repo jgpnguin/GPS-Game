@@ -17,6 +17,10 @@ public class TurretEnemyAI : MonoBehaviour
     public Transform viewPoint;
     public LineRendererManager lrMan;
     [SerializeField] private State state = State.Search;
+    public State GetState()
+    {
+        return state;
+    }
     public GenericGunScript shooter;
 
 
@@ -28,6 +32,7 @@ public class TurretEnemyAI : MonoBehaviour
     // public bool aimWhileFiring = true; 
     // negative for aim while firing
     public float timeShoot = 3f;
+    public Transform shotPoint;
 
     [Header("Targetting")]
     public float targetRange = 4f;
@@ -84,11 +89,11 @@ public class TurretEnemyAI : MonoBehaviour
             case State.Shooting:
                 if (timeShoot > 0f)
                 {
-                    shooter.Fire((targetPos - (Vector2)transform.position).normalized, viewPoint);
+                    shooter.Fire((targetPos - (Vector2)shotPoint.position).normalized, shotPoint);
                 }
                 else if (playerLOS)
                 {
-                    shooter.Fire((targetPos - (Vector2)transform.position).normalized, viewPoint);
+                    shooter.Fire((targetPos - (Vector2)shotPoint.position).normalized, shotPoint);
                 }
                 else
                 {

@@ -4,6 +4,7 @@ public class Explosion : MonoBehaviour
 {
     public float effectRadius = 1f;
     public float explosionStrength = 5f;
+    public float explosionDmg = 5f;
     public int ownerID = -1;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created 
@@ -17,6 +18,7 @@ public class Explosion : MonoBehaviour
             if (hitEntity != null && hitEntity.id != ownerID)
             {
                 Vector2 relPos = hitEntity.transform.position - transform.position;
+                hitEntity.entityHealth.ChangeHealth(-explosionDmg);
                 hitEntity.ApplyKnockback(relPos.normalized * explosionStrength);
             }
         }

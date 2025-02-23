@@ -120,6 +120,10 @@ PrefabInstance:
       propertyPath: hitBox
       value: 
       objectReference: {fileID: 3161908696034467585}
+    - target: {fileID: 6040427578377844078, guid: 72701113cfbcdc44a981dbb6870f3ef1, type: 3}
+      propertyPath: disableHitboxWhileDying
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8173870634788172809, guid: 72701113cfbcdc44a981dbb6870f3ef1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20.53
