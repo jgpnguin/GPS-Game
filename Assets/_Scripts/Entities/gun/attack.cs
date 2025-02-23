@@ -64,38 +64,40 @@ public class attack : MonoBehaviour
             nextFire = Time.time + equippedGun.gunData.fireRate;
             equippedGun.Fire(aimDirection, gunModel);
 
-        transform.rotation = Quaternion.Euler(0, 0, rotZ);
+            transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
-        //get the direction by the mouse cursor
-        Vector2 direction = (mousePos - transform.position).normalized;
+            //get the direction by the mouse cursor
+            Vector2 direction = (mousePos - transform.position).normalized;
 
-        //check weather to shoot or not
-        if (Input.GetMouseButtonDown(0) && Time.time > nextFire)
-        {
-            nextFire = Time.time + equippedGun.gunData.fireRate;
-            equippedGun.Fire(direction, gunModel);
-
-        }
-
-    }
-
-    /*public void fire(Vector2 direction)
-    {
-        GameObject bullet = Instantiate(eqiuppedWeapon.bulletPrefab,gun.position, Quaternion.identity);
-        bullet.transform.right = direction;
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-
-
-        if (rb != null)
-        {
-            rb.linearVelocity = direction* eqiuppedWeapon.speed;
-            if (eqiuppedWeapon.isBoundce)
+            //check weather to shoot or not
+            if (Input.GetMouseButtonDown(0) && Time.time > nextFire)
             {
-                this.rb.AddForce(-direction * force, ForceMode2D.Impulse);
+                nextFire = Time.time + equippedGun.gunData.fireRate;
+                equippedGun.Fire(direction, gunModel);
+
             }
 
-           
         }
 
-    }*/
+        /*public void fire(Vector2 direction)
+        {
+            GameObject bullet = Instantiate(eqiuppedWeapon.bulletPrefab,gun.position, Quaternion.identity);
+            bullet.transform.right = direction;
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+
+
+            if (rb != null)
+            {
+                rb.linearVelocity = direction* eqiuppedWeapon.speed;
+                if (eqiuppedWeapon.isBoundce)
+                {
+                    this.rb.AddForce(-direction * force, ForceMode2D.Impulse);
+                }
+
+
+            }
+
+        }*/
+    }
 }
+
