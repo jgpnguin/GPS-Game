@@ -6,7 +6,7 @@ public class Explosion : MonoBehaviour
 
     public float effectRadius = 1f;
     public float explosionStrength = 5f;
-    public float explosionDmg = 5f;
+    public float explosionDmg = 7.5f;
     public int ownerID = -1;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created 
